@@ -10,7 +10,7 @@ from decoration import wrapper_for_token
 class RegistrationModule(Module):
 	def __init__(self):
 		gmailUser = 'tntrol.go@gmail.com'
-		gmailPassword = 'fuck_you_12115'
+		gmailPassword = ''
 		mailServer = smtplib.SMTP('smtp.gmail.com', 587)
 		mailServer.ehlo()
 		mailServer.starttls()
