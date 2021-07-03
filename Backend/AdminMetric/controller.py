@@ -6,8 +6,9 @@ from sqlalchemy.ext.automap import automap_base
 from module import Module
 from flask import Flask
 
+
 class Controller:
-	def __init__(self, app: Flask, db_key: str, list_options : list[Module]):
+	def __init__(self, app: Flask, db_key: str, list_options: list[Module]):
 		self.app = app
 		app.config['DEBUG'] = True
 		app.config['SQLALCHEMY_DATABASE_URI'] = db_key
@@ -23,4 +24,4 @@ class Controller:
 
 	def run(self):
 		port = int(os.environ.get('PORT', 5005))
-		self.app.run(port=port,host='0.0.0.0', debug=True)
+		self.app.run(port=port, host='0.0.0.0', debug=True)

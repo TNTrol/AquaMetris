@@ -2,12 +2,10 @@ from flask import render_template, request, redirect
 import random
 from module import Module
 
-
 def generate_random_string(length):
 	letters = '1234567890'
 	rand_string = ''.join(random.choice(letters) for i in range(length))
 	return rand_string
-
 
 class AdminModule(Module):
 	def __init__(self):
@@ -38,33 +36,32 @@ class AdminModule(Module):
 
 		@app.route('/admin/metrics', methods=['GET'])
 		def admin_metrics():
-			metrics = db.session.query(Metrics, Tariff.price, Type_metric.name, Tariff.name.label('tariff')) \
-				.join(Tariff, Tariff.id_tariff == Metrics.id_tariff) \
-				.join(Type_metric, Type_metric.id_type == Metrics.id_type) \
+			metrics = db.session.query(Metrics, Tariff.price, Type_metric.name, Tariff.name.label('tariff'))\
+				.join(Tariff, Tariff.id_tariff == Metrics.id_tariff)\
+				.join(Type_metric, Type_metric.id_type == Metrics.id_type)\
 				.all()
 			return render_template('metrics.html', metrics=metrics)
 
 		@app.route('/admin/flats', methods=['GET'])
 		def admin_flats():
-			flat = db.session.query(Flat, Address, Users.email) \
-				.join(Address, Address.id_address == Flat.id_address) \
-				.join(Users, Users.id_user == Flat.id_owner_user) \
+			flat = db.session.query(Flat, Address, Users.email)\
+				.join(Address, Address.id_address == Flat.id_address)\
+				.join(Users, Users.id_user == Flat.id_owner_user)\
 				.all()
 			return render_template('flats.html', flats=flat)
 
 		@app.route('/admin/showMetrics/<flat_id>')
 		def admin_show_metric(flat_id):
-			metrics = db.session.query(Metrics, Tariff.price, Type_metric.name, Tariff.name.label('tariff')) \
-				.join(Tariff, Tariff.id_tariff == Metrics.id_tariff) \
-				.join(Type_metric, Type_metric.id_type == Metrics.id_type).filter(
-				Metrics.id_personal_account == flat_id) \
+			metrics = db.session.query(Metrics, Tariff.price, Type_metric.name, Tariff.name.label('tariff'))\
+				.join(Tariff, Tariff.id_tariff == Metrics.id_tariff)\
+				.join(Type_metric, Type_metric.id_type == Metrics.id_type).filter(Metrics.id_personal_account == flat_id)\
 				.all()
 			return render_template('show_metric.html', metrics=metrics, flat=flat_id)
 
 		@app.route('/admin/tariffs', methods=['GET'])
 		def admin_tariffs():
-			tariff = db.session.query(Tariff, Type_metric.name) \
-				.join(Type_metric, Type_metric.id_type == Tariff.id_type) \
+			tariff = db.session.query(Tariff, Type_metric.name)\
+				.join(Type_metric, Type_metric.id_type == Tariff.id_type)\
 				.all()
 			return render_template('tariffs.html', tariffs=tariff)
 
@@ -129,27 +126,25 @@ class AdminModule(Module):
 				flat_new.id_owner_user = flat.id_owner_user
 				db.session.add(flat_new)
 				db.session.commit()
-				db.session.query(Metrics).filter(Metrics.id_personal_account == flat_id).update(
-					{Metrics.id_personal_account: new_flat})
+				db.session.query(Metrics).filter(Metrics.id_personal_account == flat_id).update({Metrics.id_personal_account: new_flat })
 				db.session.delete(flat)
 				db.session.commit()
 			return redirect('/admin/flats')
 
 		@app.route('/admin/create_flat/city', methods=['GET'])
 		def admin_create_flat():
-			cities = db.session.query(Address).join(Type_address, Type_address.id_type_adress == Address.type).filter(
-				Type_address.name == "город").all()
+			cities = db.session.query(Address).join(Type_address, Type_address.id_type_adress == Address.type).filter(Type_address.name == "город").all()
 			return render_template('create_flat.html', cities=cities)
 
 		@app.route('/admin/create_flat/street', methods=['POST'])
 		def admin_create_flat_street():
 			city = request.form['city']
-			cities = db.session.query(Address) \
-				.join(Type_address, Type_address.id_type_adress == Address.type) \
-				.filter(Type_address.name == "город") \
+			cities = db.session.query(Address)\
+				.join(Type_address, Type_address.id_type_adress == Address.type)\
+				.filter(Type_address.name == "город")\
 				.all()
-			streets = db.session.query(Address) \
-				.filter(Address.id_include == city) \
+			streets = db.session.query(Address)\
+				.filter(Address.id_include == city)\
 				.all()
 			return render_template('create_flat.html', cities=cities, streets=streets, select_city=int(city))
 
@@ -161,14 +156,13 @@ class AdminModule(Module):
 				.join(Type_address, Type_address.id_type_adress == Address.type) \
 				.filter(Type_address.name == "город") \
 				.all()
-			streets = db.session.query(Address) \
-				.filter(Address.id_include == city) \
+			streets = db.session.query(Address)\
+				.filter(Address.id_include == city)\
 				.all()
-			houses = db.session.query(Address) \
+			houses = db.session.query(Address)\
 				.filter(Address.id_include == street) \
 				.all()
-			return render_template('create_flat.html', cities=cities, streets=streets, houses=houses,
-								   select_city=int(city), select_street=int(street))
+			return render_template('create_flat.html', cities=cities, streets=streets, houses=houses, select_city=int(city), select_street=int(street))
 
 		@app.route('/admin/create_flat/flat', methods=['POST'])
 		def admin_create_flat_flat():
@@ -185,15 +179,13 @@ class AdminModule(Module):
 			houses = db.session.query(Address) \
 				.filter(Address.id_include == street) \
 				.all()
-			return render_template('create_flat.html', cities=cities, streets=streets, houses=houses,
-								   select_city=int(city), select_street=int(street), select_house=int(house))
+			return render_template('create_flat.html', cities=cities, streets=streets, houses=houses, select_city=int(city), select_street=int(street), select_house=int(house))
 
 		@app.route('/admin/add_street', methods=['POST'])
 		def admin_add_street():
 			city = request.form['s_city']
 			name = request.form['new_street']
-			address = db.session.query(Address).filter(Address.id_include == city).filter(
-				Address.name == name).one_or_none()
+			address = db.session.query(Address).filter(Address.id_include == city).filter(Address.name == name).one_or_none()
 			if address is None:
 				address = Address()
 				type = db.session.query(Type_address).filter(Type_address.name == 'улица').first()
@@ -208,8 +200,7 @@ class AdminModule(Module):
 		def admin_add_house():
 			street = request.form['parent_street']
 			name = request.form['new_house']
-			address = db.session.query(Address).filter(Address.id_include == street).filter(
-				Address.name == name).one_or_none()
+			address = db.session.query(Address).filter(Address.id_include == street).filter(Address.name == name).one_or_none()
 			if address is None:
 				address = Address()
 				type = db.session.query(Type_address).filter(Type_address.name == 'дом').first()
@@ -224,8 +215,7 @@ class AdminModule(Module):
 		def admin_choice_house():
 			house = request.form['select_street']
 			flat = request.form['select_house']
-			address = db.session.query(Address).filter(Address.id_include == house).filter(
-				Address.name == flat).one_or_none()
+			address = db.session.query(Address).filter(Address.id_include == house).filter(Address.name == flat).one_or_none()
 			if address is None:
 				users = db.session.query(Users).filter(Users.demo == 1).all()
 				return render_template('new_flat.html', users=users, address=flat, house=house)
