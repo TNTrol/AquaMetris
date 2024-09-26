@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">Utilitatem Metris</string>
+
+    <!--    default values-->
+    <string name="big_button_default_text">Войти</string>
+
+    <!--    Fields error messages-->
+    <string name="field_data_error_maximum_n_symbols">Максимум %1$d символов</string>
+    <string name="field_data_error_minimum_n_symbols">Минимум %1$d символов</string>
+
+    <!--    Auth activity-->
+    <!--    demo fragment    -->
+    <string name="auth_demo_tab_title">Быстрая оплата</string>
+    <string name="auth_demo_button_fast_pay">Быстрая оплата</string>
+    <string name="auth_demo_textfield_hint">email</string>
+    <!--    login fragment    -->
+    <string name="auth_login_tab_title">Вход</string>
+    <string name="auth_login_button_enter">Войти</string>
+    <string name="auth_login_button_register">Зарегистрироваться</string>
+    <string name="auth_login_menu_to_register">Зарегистрироваться</string>
+    <string name="auth_login_menu_to_login">Войти</string>
+    <string name="auth_login_textfield_pass_hint">password</string>
+    <string name="auth_login_textfield_email_hint">email</string>
+    <!--    Meter types as string -->
+    <string name="meter_type_cold_water">Х. Вода</string>
+    <string name="meter_type_hot_water">Г. Вода</string>
+    <string name="meter_type_electricity">Электричество</string>
+    <string name="meter_type_gas">Газ</string>
+    <!--    Fragment names      -->
+    <string name="fragment_title_add_meter">Добавить счётчик</string>
+    <string name="fragment_title_saved_meters">Сохранённые счётчики</string>
+    <string name="fragment_title_settings">Настройки</string>
+    <string name="fragment_title_payment">Оплата</string>
+    <string name="fragment_title_my_accounts">Мои счета</string>
+    <!--    Not filtered values. Need filter if exists-->
+    <string name="settings_button_text_change_email">Изменить почту</string>
+    <string name="settings_button_text_change_password">Изменить пароль</string>
+    <string name="backlog">Задолженность :</string>
+    <string name="meter_text">Счётчик</string>
+    <string name="meter_type_text">Тип</string>
+    <string name="backlog_empty">Задолженностей нет</string>
+    <string name="sum_for_pay">Сумма к оплате :</string>
+    <string name="pay_for_chosen">Оплатить выбранные</string>
+    <string name="payment_ready_for_pay">Квитанция готова к оплате</string>
+    <string name="payment_successfully_payed">Успешно оплачено</string>
+    <string name="sent_to_email">Отправить на почту</string>
+    <string name="to_pay">Оплатить</string>
+    <string name="identifier">Идентификатор</string>
+    <string name="address">Адрес</string>
+    <string name="settings_menu_exit">Выйти</string>
+    <string name="account_identifier_title">Идентификатор счёта</string>
+    <string name="meters_on_this_account">Счётчики, принадлежащие счёту :</string>
+    <string name="meter_identifier_title">Идентификатор счётчика</string>
+    <string name="meters_found">Найденный счётчик</string>
+    <string name="meters_on_account">Счётчики принадлежащие счёту</string>
+    <string name="add_account">Добавить счёт</string>
+    <string name="fragment_meter_meter_identifier_title">Счётчик</string>
+    <string name="fragment_meter_meter_tariff_title">Тариф</string>
+    <string name="fragment_meter_meter_type_title">Тип коммунальной услуги</string>
+    <string name="fragment_meter_meter_prev_month_data_title">Данные за предыдущий месяц</string>
+    <string name="fragment_meter_meter_backlog_title">Задолженность</string>
+    <string name="fragment_title_meter">Счётчик</string>
+    <string name="fragment_title_example">Пример</string>
+    <string name="show_payment_history">Просмотреть историю платежей</string>
+    <string name="pay_backlog">Погасить задолженность</string>
+    <string name="heating">Отопление</string>
+    <string name="fragment_history_title">История</string>
+    <string name="do_payment">Оплатить</string>
+    <string name="rubles_postfix">р.</string>
+    <string name="fragment_dialog_pay_title">Оплата</string>
+    <string name="meter_dont_has_backlog">На данном счётчике нету задолженности</string>
+    <string name="for_finish_registration_visit_email">Для того чтобы завершить регистрацию, пройдите по ссылке, отправленной вам на почту.</string>
+    <string name="finish_registration_title">Подтверждение регистрации</string>
+    <string name="lost_internet_connection">Нет связи с интернетом</string>
+    <string name="current_month_data">Данные на текущий месяц</string>
+    <string name="cancel">Отмена</string>
+    <string name="accept_changes">Подтвердить изменения</string>
+    <string name="new_value_lower_than_previous">Новое значение должно быть больше предыдущего</string>
+    <string name="generic_error_default_message">Произошла ошибка</string>
+    <string name="select_at_least_1_meter_to_pay">Выберите хотя бы один счётчик для оплаты</string>
+    <string name="tmsg_meters_not_found">Счётчиков не найдено</string>
+    <string name="dont_have_accounts">У вас пока нет ни одного счёта</string>
+    <string name="dont_have_payments">Ещё не было произведено ни одной оплаты</string>
+    <string name="account">Счёт %s</string>
+    <string name="account_dont_has_meters">На счету нет ни одного счётчика</string>
+    <string name="incorrect_email">Некорректный email</string>
+    <string name="empty_field">Пустое значение</string>
+    <string name="Any">Любой</string>
+    <string name="meter_type">Тип</string>
+    <string name="fragment_title_payment_from_history">Квитанция</string>
+    <string name="err_while_loading_payment">Ошибка загрузки оплаты</string>
+    <string name="address_">Адрес :</string>
+    <string name="for_all_questions_contact_us_on">По всем вопросам обращаться на </string>
+    <string name="application_support_email">UtilitatemMetris@yandex.ru</string>
+    <string name="are_you_really_want_to_quit">Вы действительно хотите выйти?</string>
+    <string name="ok">Выход</string>
+    <string name="available_only_on_full_account">Доступно только после полной регистрации</string>
+    <string name="user_with_same_email_already_registered">Пользователь с такой почтой уже зарегистрирован</string>
+
+
+</resources>
